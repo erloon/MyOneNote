@@ -9,5 +9,6 @@ namespace MyOneNote.Services
     {
         Task<ApplicationUser> Register(UserRegisterVM model);
         UserProfile GetUserProfile(ApplicationUser user);
+        Task<bool> Login(LoginVM login);
     }
 }

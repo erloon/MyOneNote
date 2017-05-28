@@ -9,8 +9,8 @@ namespace MyOneNote.EntityMap
         {
             entityTypeBuilder.HasKey(x => x.Id);
             entityTypeBuilder.Property(x => x.Id).ValueGeneratedOnAdd();
-            entityTypeBuilder.Property(x => x.Organization).HasMaxLength(250).IsRequired();
-            entityTypeBuilder.Property(x => x.Specialization).HasMaxLength(200).IsRequired();
+            entityTypeBuilder.Property(x => x.Organization).HasMaxLength(250);
+            entityTypeBuilder.Property(x => x.Specialization).HasMaxLength(200);
         }
     }
 }

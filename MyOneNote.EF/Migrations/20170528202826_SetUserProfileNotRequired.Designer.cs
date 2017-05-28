@@ -8,9 +8,10 @@ using MyOneNote.EF;
 namespace MyOneNote.EF.Migrations
 {
     [DbContext(typeof(MyOneNoteContext))]
-    partial class MyOneNoteContextModelSnapshot : ModelSnapshot
+    [Migration("20170528202826_SetUserProfileNotRequired")]
+    partial class SetUserProfileNotRequired
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")

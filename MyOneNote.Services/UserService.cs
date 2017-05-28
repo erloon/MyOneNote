@@ -40,10 +40,32 @@ namespace MyOneNote.Services
             if (!result.Succeeded)
                 throw new RegisterUserException(result.Errors.ToString());
 
-            _baseRepository.Insert(new UserProfile()
+
+            if (!_roleManager.RoleExistsAsync("NormalUser").Result)
             {
-                UserId = user.Id,
+                IdentityRole role = new IdentityRole();
+                role.Name = "NormalUser";
+              
+                IdentityResult roleResult = _roleManager.
+                    CreateAsync(role).Result;
+                if (!roleResult.Succeeded)
+                {
+                    throw new RegisterUserException(roleResult.Errors.ToString());
+                }
+            }
+
+            _userManager.AddToRoleAsync(user,
+                "NormalUser").Wait();
+
+
+            PerformCommand(() =>
+            {
+                _baseRepository.Insert(new UserProfile()
+                {
+                    UserId = user.Id,
+                });
             });
+            
 
             return user;
         }
@@ -51,6 +73,15 @@ namespace MyOneNote.Services
         public UserProfile GetUserProfile(ApplicationUser user)
         {
             return _baseRepository.Find(new UserProfile() {UserId = user.Id});
+        }
+
+        public async Task<bool> Login(LoginVM login)
+        {
+            var result = await _loginManager.PasswordSignInAsync(login.UserName, login.Password, login.RememberMe, lockoutOnFailure: false);
+            if (result.Succeeded)
+                return true;
+            return false;
+
         }
     }
 }
