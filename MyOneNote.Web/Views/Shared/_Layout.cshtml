@@ -33,20 +33,72 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2017 - MyOneNote.Web</p>
-        </footer>
+    <div class="row">
+        <div class="col-md-2">
+            <div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Notatki</a>
+                        <ul>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area=""  asp-controller="Note" asp-action="Index">Dodaj</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Zarządzaj</a>
+                            </li>
+                        </ul>
+                    <li/>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Linki</a>
+                        <ul>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Dodaj</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Zarządzaj</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Media</a>
+                        <ul>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Dodaj</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Zarządzaj</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Recenzje</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Oceny</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tagi</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; 2017 - MyOneNote.Web</p>
+                </footer>
+            </div>
+        </div>
     </div>
+   
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
