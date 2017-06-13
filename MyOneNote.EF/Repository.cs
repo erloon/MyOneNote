@@ -46,8 +46,11 @@ namespace MyOneNote.EF
         
         public IQueryable<TEntity> FromSql(string sql, params object[] parameters) => _dbSet.FromSql(sql, parameters);
 
-        
-        public TEntity Find(params object[] keyValues) => _dbSet.Find(keyValues);
+
+        public TEntity Find(params object[] keyValues)
+        {
+            return _dbSet.Find(keyValues);
+        }
 
 
         public Task<TEntity> FindAsync(params object[] keyValues) => _dbSet.FindAsync(keyValues);

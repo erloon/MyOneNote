@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -72,7 +74,8 @@ namespace MyOneNote.Services
 
         public UserProfile GetUserProfile(ApplicationUser user)
         {
-            return _baseRepository.Find(new UserProfile() {UserId = user.Id});
+            string userId = user.Id.ToString();
+            return _baseRepository.Find(new UserProfile(userId));
         }
 
         public async Task<bool> Login(LoginVM login)
@@ -82,6 +85,17 @@ namespace MyOneNote.Services
                 return true;
             return false;
 
+        }
+
+        public UserProfile GetserProfileByClaims(string userId)
+        {
+            Expression<Func<UserProfile, bool>> filter()
+            {
+                return x => x.UserId.Equals(userId);
+            }
+            var temp = _baseRepository.Query(filter()).FirstOrDefault();
+
+            return temp;
         }
     }
 }

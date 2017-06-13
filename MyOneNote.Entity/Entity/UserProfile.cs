@@ -21,5 +21,15 @@ namespace MyOneNote.Data.Entity
         public virtual ICollection<Category> Categories { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
+
+        public UserProfile()
+        {
+            
+        }
+        public UserProfile(string userId)
+        {
+            Id=Guid.Parse("e30f04e3-30f4-4a83-9da1-1556b99c0a13");
+            UserId = userId;
+        }
     }
 }

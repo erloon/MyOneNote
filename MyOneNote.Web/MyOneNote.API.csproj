@@ -44,6 +44,7 @@
     <ProjectReference Include="..\MyOneNote.ViewModels\MyOneNote.ViewModels.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Dictionary\" />
     <Folder Include="Views\Note\" />
   </ItemGroup>
 
