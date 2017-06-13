@@ -13,6 +13,8 @@ namespace MyOneNote.WWW.Infrastructure
             CreateMap<Category, AddCategoryVM>();
             CreateMap<AddCategoryVM, Category>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(dest => dest.Name));
+
+            CreateMap<Project, ProjectVM>();
         }
     }
 }

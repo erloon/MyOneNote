@@ -45,9 +45,31 @@ namespace MyOneNote.WWW.Controllers
             }
             return View(category);
         }
-
+        [HttpGet]
         public IActionResult Category()
         {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Project(ProjectVM model)
+        {
+            Project project = null;
+
+            try
+            {
+                project = _projectService.Add(Mapper.Map<Category>(model));
+                project.UserProfile = GetProfile(this.User);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToInvariantString());
+            }
+            return View(project);
+        }
+        [HttpPost]
+        public IActionResult Project()
+        {
+            List<ProjectVM> projects = _projectService.GetAll().ToList();
             return View();
         }
     }
