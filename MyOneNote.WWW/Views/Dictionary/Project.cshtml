@@ -1,0 +1,35 @@
+@model MyOneNote.ViewModels.Dictionary.ProjectsVM
+
+<h2>Projekty</h2>
+<div class="row">
+    <div class="col-md-8">
+        @Html.Partial("_AddProject", Model.AddProjectVM)
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <table class="table table-inverse">
+            <thead>
+            <tr>
+                <th>Nazwa projektu</th>
+                <th>Data utworzenia</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @if (Model.ProjectMm != null)
+            {
+                foreach (var project in Model.ProjectMm)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(item =>project.Name)</td>
+                        <td>@Html.DisplayFor(item => project.CreateDate)</td>
+                        <td><a class="btn-sm btn-danger" asp-action="DeleteProject" asp-route-id="@project.Id">Usuñ</a></td>
+                    </tr>
+                }
+            }
+            </tbody>
+        </table>
+           
+    </div>
+</div>

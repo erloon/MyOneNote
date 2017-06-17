@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MyOneNote.ViewModels.Tag;
 
 namespace MyOneNote.WWW.Controllers
 {
@@ -11,6 +8,11 @@ namespace MyOneNote.WWW.Controllers
         public IActionResult Tag()
         {
             return View();
+        }
+
+        public IActionResult Tag(AddTagVM model)
+        {
+            return View("Tag");
         }
     }
 }

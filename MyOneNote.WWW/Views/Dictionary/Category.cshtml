@@ -1,7 +1,33 @@
-
-@{
-    ViewData["Title"] = "Category";
-}
-
-<h2>Category</h2>
-
+﻿@model MyOneNote.ViewModels.Dictionary.CategoiesVM
+<h2>Kategorie</h2>
+<div class="row">
+    <div class="col-md-8">
+        @Html.Partial("_AddCategory", Model.AddCategoryVm)
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <table class="table table-inverse">
+            <thead>
+            <tr>
+                <th>Nazwa kategorii</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @if (Model.CategoryVm != null)
+            {
+                foreach (var category in Model.CategoryVm)
+                 {
+                     <tr>
+                         <td>@Html.DisplayFor(item =>category.Name)</td>
+                         <td><a class="btn-sm btn-danger" asp-action="DeleteCategory" asp-route-id="@category.Id">Usuń</a></td>
+                     </tr>
+                 }
+            }
+            </tbody>
+        </table>
+           
+    </div>
+</div>

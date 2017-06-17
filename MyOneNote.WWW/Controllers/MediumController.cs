@@ -1,14 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MyOneNote.ViewModels.Medium;
 
 namespace MyOneNote.WWW.Controllers
 {
     public class MediumController : Controller
     {
-        public IActionResult Index()
+        public IActionResult AddMedium(AddMediumVM model)
+        {
+            return View("Medium");
+        }
+
+        public IActionResult Medium()
         {
             return View();
         }

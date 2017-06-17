@@ -38,6 +38,9 @@ namespace MyOneNote.WWW.Infrastructure
             builder.RegisterType<UserService>()
                 .As<IUserService>()
                 .InstancePerLifetimeScope();
+            builder.RegisterType<TagService>()
+                .As<ITagService>()
+                .InstancePerLifetimeScope();
 
 
             //builder.RegisterAssemblyTypes(dataAccess)

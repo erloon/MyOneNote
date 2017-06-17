@@ -1,14 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MyOneNote.ViewModels.Link;
 
 namespace MyOneNote.WWW.Controllers
 {
     public class LinkController : Controller
     {
-        public IActionResult Index()
+        public IActionResult AddLink(AddLinkVM model)
+        {
+            return View();
+        }
+
+        public IActionResult Link()
         {
             return View();
         }

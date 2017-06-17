@@ -1,0 +1,22 @@
+﻿@using MyOneNote.ViewModels.Note
+@model IEnumerable<MyOneNote.ViewModels.Note.ListNoteVM>
+    @{
+        ViewData["Title"] = "Zarządzanie notatkami";
+    }
+
+    <h2 class="header">Zarządzanie</h2>
+    <br />
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            @foreach (ListNoteVM note in Model)
+            {
+                @Html.Partial("_MenageNote", note)
+                <br />
+            }
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+
+

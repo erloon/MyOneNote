@@ -12,7 +12,7 @@ namespace MyOneNote.EF
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        private readonly DbContext _dbContext;
+        protected readonly DbContext _dbContext;
         private readonly DbSet<TEntity> _dbSet;
 
         
@@ -140,6 +140,11 @@ namespace MyOneNote.EF
         public IEnumerable<TEntity> GetAll()
         {
             return _dbSet;
+        }
+
+        public DbContext GetContext()
+        {
+            return _dbContext;
         }
     }
 }

@@ -1,14 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MyOneNote.ViewModels;
+using MyOneNote.ViewModels.Review;
 
 namespace MyOneNote.WWW.Controllers
 {
     public class ReviewController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Review(AddReviewVM model)
+        {
+            return View("Review");
+        }
+
+        public IActionResult Review()
         {
             return View();
         }

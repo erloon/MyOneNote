@@ -1,0 +1,14 @@
+@model MyOneNote.ViewModels.Dictionary.AddProjectVM
+
+<div>
+    <form class="form-horizontal" asp-controller="Dictionary" asp-action="AddProject" method="post">
+        <div class="form-group">
+            <label class="control-label" asp-for="Name">Nazwa</label>
+            <input type="text" class="form-control" asp-for="Name" required="true" />
+            <span asp-validation-for="Name" class="text-dange"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Dodaj" />
+        </div>
+    </form>
+</div>

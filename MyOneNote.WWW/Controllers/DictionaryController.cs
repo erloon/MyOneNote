@@ -6,10 +6,12 @@ using AutoMapper;
 using Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using MyOneNote.Data;
 using MyOneNote.Data.Entity;
 using MyOneNote.Services;
 using MyOneNote.ViewModels;
+using MyOneNote.ViewModels.Dictionary;
 using MyOneNote.WWW.Infrastructure;
 using Newtonsoft.Json;
 
@@ -31,46 +33,84 @@ namespace MyOneNote.WWW.Controllers
         }
 
         [HttpPost]
-        public IActionResult Category(AddCategoryVM categoryVm)
+        public RedirectToActionResult AddCategory(AddCategoryVM categoryVm)
         {
-            Category category = null;
+            if (ModelState.IsValid)
+            {
+                Category category = null;
+                try
+                {
+                    category = Mapper.Map<Category>(categoryVm);
+                    category.CreateBy = GetProfile(this.User).Id;
+                    category.CreateDate = DateTime.Now;
+                    _categoryService.Add(category);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return RedirectToAction("Category");
+        }
+        
+        public RedirectToActionResult DeleteCategory(string id)
+        {
             try
             {
-                category = _categoryService.Add(Mapper.Map<Category>(categoryVm));
-                category.UserProfile = GetProfile(this.User);
+                _categoryService.Delete(new Category(){Id = Guid.Parse(id)});
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.ToInvariantString());
+                throw ex;
             }
-            return View(category);
+            return RedirectToAction("Category");
         }
+        public RedirectToActionResult DeleteProject(string id)
+        {
+            try
+            {
+                _projectService.Delete(new Project() { Id = Guid.Parse(id) });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return RedirectToAction("Project");
+        }
+
         [HttpGet]
         public IActionResult Category()
         {
-            return View();
+            CategoiesVM vm = new CategoiesVM();
+            vm.CategoryVm = Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryVM>>(_categoryService.GetAll()); 
+            return View(vm);
         }
         [HttpPost]
-        public IActionResult Project(ProjectVM model)
+        public RedirectToActionResult AddProject(AddProjectVM model)
         {
             Project project = null;
-
-            try
+            if (ModelState.IsValid)
             {
-                project = _projectService.Add(Mapper.Map<Category>(model));
-                project.UserProfile = GetProfile(this.User);
+                try
+                {
+                    project = Mapper.Map<AddProjectVM, Project>(model);
+                    project.UserProfileId = GetProfile(this.User).Id;
+                    project.CreateDate = DateTime.Now;
+                    _projectService.Add(project);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.ToInvariantString());
-            }
-            return View(project);
+            return RedirectToAction("Project");
         }
-        [HttpPost]
+        [HttpGet]
         public IActionResult Project()
         {
-            List<ProjectVM> projects = _projectService.GetAll().ToList();
-            return View();
+            ProjectsVM vm = new ProjectsVM();
+            vm.ProjectMm = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectVM>>(_projectService.GetAll());
+            return View(vm);
         }
     }
 }

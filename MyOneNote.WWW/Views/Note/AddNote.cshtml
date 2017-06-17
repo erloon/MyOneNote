@@ -1,0 +1,42 @@
+﻿@model AddNoteVM
+@{
+    ViewData["Title"] = "Dodanie notatki";
+}
+
+<h2>Dodanie notatki</h2>
+<div class="col-md-12">
+    <form asp-controller="Note" asp-action="InsertNote" class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label" asp-for="Title">Tytuł</label>
+            <input type="text" class="form-control" asp-for="Title"/>
+        </div>
+        
+        <div class="form-inline">
+            <label class="control-label" asp-for="CategoryId">Kategoria</label>
+            <select asp-for="CategoryId" asp-items="@Model.Categories" class="form-control mb-4 mr-sm-4 mb-sm-0" > 
+            </select>
+            <label class="control-label" asp-for="ProjectId">Projekt</label>
+            <select asp-for="ProjectId" asp-items="@Model.Projects" class="form-control mb-4 mr-sm-4 mb-sm-0" ></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Content">Treść</label>
+            <textarea rows="20"  asp-for="Content" class="form-control"></textarea>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-7">
+                <label class="control-label" asp-for="Description">Opis:</label>
+                <textarea class="form-control" rows="4" asp-for="Description"></textarea>
+            </div>
+            <div class="form-group col-md-5">
+                <label class="control-label" asp-for="TagsIds">Tagi:</label>
+                <select asp-for="TagsIds" asp-items="@Model.Tags" class="form-control"  multiple="multiple"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="btn btn-success" type="submit" value="Zapisz"/>
+            <a asp-controller="Note" asp-action="Note"><span class="btn btn-warning">Anuluj</span></a>
+        </div>
+    </form>
+</div>
+
+

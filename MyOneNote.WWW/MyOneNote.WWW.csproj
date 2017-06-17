@@ -47,7 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Dictionary\" />
-    <Folder Include="Views\Note\" />
+    <Folder Include="Views\Link\" />
+    <Folder Include="Views\Medium\" />
+    <Folder Include="Views\Tag\" />
+    <Folder Include="Views\Review\" />
+    <Folder Include="Views\Rating\" />
     <Folder Include="wwwroot\themes\" />
   </ItemGroup>
 

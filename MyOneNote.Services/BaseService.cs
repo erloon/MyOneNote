@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore.Internal;
 using MyOneNote.Data.Entity;
 using MyOneNote.EF;
 
@@ -57,7 +58,7 @@ namespace MyOneNote.Services
             return entity;
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return _baseRepository.GetAll();
         }

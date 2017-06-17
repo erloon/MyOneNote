@@ -1,0 +1,16 @@
+﻿@model MyOneNote.ViewModels.Note.ListNoteVM
+
+<div class="row">
+    <div class="col-md-10">
+        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.CategoryId)
+        <div class="card">
+            <div class="card-block">
+                <h4 class="card-title">@Model.Title</h4>
+                <h6 class="card-subtitle mb-2 text-muted">@Model.Category</h6>
+                <a asp-controller="Note" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Usuń</a>
+                <a asp-controller="Note" asp-action="AddNote"  class="btn btn-info">Edytuj</a>
+            </div>
+        </div>
+    </div>
+</div>

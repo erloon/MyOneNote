@@ -55,6 +55,7 @@ namespace MyOneNote.WWW
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             AutoMapper.Mapper.Initialize(cfg => cfg.AddProfile(new MapperProfile()));
 
